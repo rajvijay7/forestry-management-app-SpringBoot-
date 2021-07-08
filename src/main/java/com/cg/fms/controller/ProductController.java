@@ -32,12 +32,20 @@ public class ProductController {
 	private IProductService service; 
 	
 	
-	
 	@GetMapping("/getById/{id}")                //GETTING PRODUCT BY ID
 	@ApiOperation("Get Product By ID")
 	public Product fetchById(@PathVariable int id) throws NumberFormatException, ProductNotFoundException {
 		logger.info("Inside fetchById %s", id);
 		return service.fetchById(id);
+	}
+		
+	
+	
+	@GetMapping("/getByName/{name}")                //GETTING PRODUCT BY NAME
+	@ApiOperation("Get Product By Name")
+	public Product fetchByName(@PathVariable String name) throws NumberFormatException, ProductNotFoundException {
+		logger.info("Inside fetchByName %s", name);
+		return service.fetchByName(name);
 	}
 		
 	

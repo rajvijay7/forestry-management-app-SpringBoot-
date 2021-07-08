@@ -13,8 +13,14 @@ import com.cg.fms.entities.Product;
 public interface IProductService {
 
 	
+	
+
 	 //GETTING PRODUCT BY ID
 	Product fetchById(int id) throws ProductNotFoundException;
+	
+	
+	 //GETTING PRODUCT BY NAME
+	Product fetchByName(String name) throws ProductNotFoundException;
 	
 	
 	

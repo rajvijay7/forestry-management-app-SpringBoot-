@@ -21,13 +21,23 @@ public class ProductServiceImpl implements IProductService{
 
 	
 	
-	                  //GETTING PRODUCT BY ID
+
+                             //GETTING PRODUCT BY ID
+    @Override
+    public Product fetchById(int id) throws ProductNotFoundException {
+    	Optional<Product> product = repository.findById(id);
+    	if (!product.isPresent())
+    		throw new ProductNotFoundException();
+    	return product.get();
+    }
+
+
+	
+	                  //GETTING PRODUCT BY NAME
 	@Override
-	public Product fetchById(int id) throws ProductNotFoundException {
-		Optional<Product> product = repository.findById(id);
-		if (!product.isPresent())
-			throw new ProductNotFoundException();
-		return product.get();
+	public Product fetchByName(String name) throws ProductNotFoundException {
+		logger.info("inside fetchByName method of ProductServiceImpl");
+		return repository.findByName(name);
 	}
 	
 

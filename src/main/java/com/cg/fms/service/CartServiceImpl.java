@@ -43,6 +43,7 @@ public  class CartServiceImpl implements ICartService{
 	public Cart addCart(Cart cart) {
 		logger.info("inside addProduct method of ProductServiceImpl");
 		return repository.save(cart);
+		
 	}
 	
 	// updating a product //
@@ -50,6 +51,7 @@ public  class CartServiceImpl implements ICartService{
 	@Override
 	public void updateCart(Cart cart) {
 		repository.save(cart);
+		
 	}
 	
 	

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -30,6 +30,8 @@ public class Cart {
 
 	@Column(name = "price")
 	private String price;
+	
+	
 	
 	@Column(name = "total_price")
 	private String total_price;

@@ -18,7 +18,12 @@ public class Order {
 	@Id                                
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")   
-	private Integer id;                  
+	private Integer id;       
+	
+	
+	@Column(name = "cart_item")         // FROM CART
+	@NotNull
+	private String cart_item;            
 	
 	
 	@Column(name = "totalprice")         //FROM CART
@@ -56,18 +61,8 @@ public class Order {
 	
 	@Column(name = "contact")          //CUSTOMER CONTACT CODE FROM CUSTOMER TABLE
 	private long contact;
-	
-	
-	@Column(name = "deliverydate")
-	@NotNull
-	private String deliverydate;
-	
-	
-	
-	
-	
-	
-	
+		
+}
 	
 	
 //	@OneToMany(targetEntity = Contract.class, cascade = CascadeType.ALL)
@@ -83,4 +78,3 @@ public class Order {
 //	private List<Customer> customers;
 
 	
-}

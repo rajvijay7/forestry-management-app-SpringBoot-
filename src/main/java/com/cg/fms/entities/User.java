@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "regis_table")
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -67,7 +68,16 @@ public class User {
 	private String confirmPassword;
 		
 
-	@Column(name = "roll")
-    private String roll;
+	@Column(name = "town")
+	private String town;
 	
+	
+	@Column(name = "postal_code")
+	@NotNull
+	private long postalcode;
+	
+	
+	@Column(name = "contact")
+	private long contact;
+
 }

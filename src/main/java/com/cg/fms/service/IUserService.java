@@ -2,12 +2,16 @@ package com.cg.fms.service;
 
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import com.cg.fms.entities.Customer;
 import com.cg.fms.entities.User;
 import com.cg.fms.exception.ConfirmPasswordException;
+import com.cg.fms.exception.CustomerNotFoundException;
 import com.cg.fms.exception.InvalidEmailAndPassword;
 import com.cg.fms.exception.UserDoesNotExist;
 import com.cg.fms.exception.UserEmailAlreadyExistException;
@@ -21,11 +25,12 @@ public interface IUserService {
 	// for login
 	public boolean findByEmailAndPassword(String email,String password) throws InvalidEmailAndPassword;
 
-	// for deleting
-	public void deleteUser(Long valueOf) throws UserDoesNotExist;
+	
 
 	// for updating
 	public User updateUser(@Valid User user);
+	
+	List<User> fetchAll();
 
 //	User getByEmail(String email) throws UserDoesNotExist;
 	// by default ABSTRACT methods are public 
@@ -33,6 +38,6 @@ public interface IUserService {
 	// List<User> fetchAll();
 	public User getByEmail(String email) throws UserDoesNotExist;
 	 
-
+	User fetchById(int id) throws UserDoesNotExist;
 }
 

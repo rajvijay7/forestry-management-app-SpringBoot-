@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.cg.fms.entities.Product;
+import com.cg.fms.exception.ProductAlreadyExistException;
 import com.cg.fms.exception.ProductNotFoundException;
 import com.cg.fms.service.IProductService;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +35,7 @@ public class ProductController {
 	
 	@GetMapping("/getById/{id}")                //GETTING PRODUCT BY ID
 	@ApiOperation("Get Product By ID")
-	public Product fetchById(@PathVariable int id) throws NumberFormatException, ProductNotFoundException {
+	public Product fetchById(@PathVariable int id) throws NumberFormatException, ProductNotFoundException{
 		logger.info("Inside fetchById %s", id);
 		return service.fetchById(id);
 	}
@@ -53,7 +54,7 @@ public class ProductController {
 		
 	@PostMapping("/save")                        //ADDING A NEW PRODUCT
 	@ApiOperation("Add a new product")
-	public ResponseEntity<Product> save(@Valid @RequestBody Product product) {
+	public ResponseEntity<Product> save(@Valid @RequestBody Product product) throws ProductAlreadyExistException{
 		logger.info("Adding a product : " + product);
 		Product prod = service.addProduct(product);
 		return new ResponseEntity<>(prod, HttpStatus.CREATED);

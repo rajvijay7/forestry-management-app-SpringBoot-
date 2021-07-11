@@ -1,10 +1,14 @@
  package com.cg.fms.service;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cg.fms.entities.Customer;
 import com.cg.fms.entities.User;
 import com.cg.fms.exception.ConfirmPasswordException;
+import com.cg.fms.exception.CustomerNotFoundException;
 import com.cg.fms.exception.InvalidEmailAndPassword;
 import com.cg.fms.exception.UserDoesNotExist;
 import com.cg.fms.exception.UserEmailAlreadyExistException;
@@ -42,7 +46,7 @@ public  class UserServiceImpl implements IUserService{
 	}
 	
 
-	user.setRoll("Trainee");
+	
 		
 		return	userRepository.save(user);
 	}
@@ -84,20 +88,26 @@ public  class UserServiceImpl implements IUserService{
 	}
 	
 
+	
 	@Override
-	public void deleteUser(Long id) throws UserDoesNotExist {
+	public List<User> fetchAll() {
+		return userRepository.findAll();
+	}
+
+
+	
+	@Override
+	public User fetchById(int id) throws UserDoesNotExist {
 		Optional<User> user = userRepository.findById(id);
-		if(!user.isPresent())
-		{
+		if (!user.isPresent())
 			throw new UserDoesNotExist();
-		}
-		userRepository.deleteById(id);
-		
+		return user.get();
 	}
 
 	
 	
-
+	
+	
 	@Override
 	public User updateUser(@Valid User user) {
 		

@@ -2,6 +2,7 @@ package com.cg.fms.controller;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +15,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cg.fms.entities.Customer;
 import com.cg.fms.entities.Login;
 import com.cg.fms.entities.User;
 import com.cg.fms.exception.ConfirmPasswordException;
+import com.cg.fms.exception.CustomerNotFoundException;
 import com.cg.fms.exception.InvalidEmailAndPassword;
 import com.cg.fms.exception.UserDoesNotExist;
 import com.cg.fms.exception.UserEmailAlreadyExistException;
 import com.cg.fms.exception.UserNameException;
 import com.cg.fms.service.IUserService;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -64,7 +71,18 @@ public class RegistrationController {
 		return new ResponseEntity<>(login, HttpStatus.CREATED);
 	}
 	
+	@GetMapping("/getAll")
+	@ApiOperation("Fetch all Customers Details")
+	public List<User> fetch() {
+		return userService.fetchAll();
+	}
 	
+	
+	@GetMapping("/getById/{id}")
+	@ApiOperation("Get Customer By ID")
+	public User fetchById(@PathVariable int id) throws UserDoesNotExist {
+		return userService.fetchById(id);
+	}
 	
 	
 	@GetMapping("user/{email}")
@@ -74,15 +92,7 @@ public class RegistrationController {
 		
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable String id) throws UserDoesNotExist{
-		
-		userService.deleteUser(Long.valueOf(id));
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		
-	}
-	
-	
+
 
 	
 	

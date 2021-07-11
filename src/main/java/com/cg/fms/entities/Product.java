@@ -14,9 +14,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
-@Data                                
+ @Data                                
 @NoArgsConstructor           
 @Entity                                   
 @Table(name = "Product_tbl")      

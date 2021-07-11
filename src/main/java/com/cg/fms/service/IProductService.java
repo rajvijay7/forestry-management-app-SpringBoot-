@@ -1,8 +1,12 @@
 package com.cg.fms.service;
 
 import com.cg.fms.exception.ProductNotFoundException;
+import com.cg.fms.exception.UserDoesNotExist;
 import com.cg.fms.exception.NumberFormatException;
+import com.cg.fms.exception.ProductAlreadyExistException;
 import com.cg.fms.entities.Product;
+import com.cg.fms.entities.User;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,8 +28,10 @@ public interface IProductService {
 	
 	
 	
+	
+	
 	 //ADDING A NEW PRODUCT
-	Product addProduct(Product product);
+	Product addProduct(Product product) throws ProductAlreadyExistException;
 	
 	
 	
